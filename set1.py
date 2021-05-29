@@ -37,10 +37,10 @@ for row in range(start_row, max_row+1):
     else:
         cell.fill = ops.PatternFill(start_color='000000', end_color='FF0000', fill_type='solid')
 
-for i in range(len(sp1)):
-    ws.cell(start_row+i, data_col1+2).value = sp1
-    pass
-
+dict1 = enumerate(sp1)
+for i, data in dict1:
+    print(i, data)
+    ws.cell(start_row+i, data_col1+2).value = data
 
 
 wb.save(file_xls)
