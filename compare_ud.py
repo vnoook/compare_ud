@@ -1,6 +1,6 @@
 # сравнение номеров дел
 import openpyxl
-import openpyxl.styles as ops
+import openpyxl.styles
 
 file_xls = 'compare_ud.xlsx'
 start_row = 2
@@ -21,9 +21,9 @@ for row in range(start_row, max_row+1):
         if content_cell.isdigit():
             set1.add(content_cell)
         else:
-            cell.fill = ops.PatternFill(start_color='FF0000', end_color='FF0000', fill_type='solid')
+            cell.fill = openpyxl.styles.PatternFill(start_color='FF0000', end_color='FF0000', fill_type='solid')
     else:
-        cell.fill = ops.PatternFill(start_color='000000', end_color='FF0000', fill_type='solid')
+        cell.fill = openpyxl.styles.PatternFill(start_color='000000', end_color='FF0000', fill_type='solid')
 
 for row in range(start_row, max_row+1):
     cell = ws.cell(row, data_col2)
@@ -33,9 +33,9 @@ for row in range(start_row, max_row+1):
         if content_cell.isdigit():
             set2.add(content_cell)
         else:
-            cell.fill = ops.PatternFill(start_color='FF0000', end_color='FF0000', fill_type='solid')
+            cell.fill = openpyxl.styles.PatternFill(start_color='FF0000', end_color='FF0000', fill_type='solid')
     else:
-        cell.fill = ops.PatternFill(start_color='000000', end_color='FF0000', fill_type='solid')
+        cell.fill = openpyxl.styles.PatternFill(start_color='000000', end_color='FF0000', fill_type='solid')
 
 dict1 = enumerate(set1)
 for i, data in dict1:
