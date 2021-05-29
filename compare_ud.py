@@ -76,7 +76,7 @@ for i5, data5 in tuple5:
 
 # пересечение 2
 diff_set2 = set2.difference(set1)
-tuple6 = enumerate(diff_set1)
+tuple6 = enumerate(diff_set2)
 for i6, data6 in tuple6:
     ws.cell(start_row+i6, 8).value = data6
 
