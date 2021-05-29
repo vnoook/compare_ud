@@ -42,5 +42,10 @@ for i, data in dict1:
     print(i, data)
     ws.cell(start_row+i, data_col1+2).value = data
 
+dict2 = enumerate(sp2)
+for i, data in dict1:
+    print(i, data)
+    ws.cell(start_row+i, data_col2+2).value = data
+
 
 wb.save(file_xls)
