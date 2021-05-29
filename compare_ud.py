@@ -19,7 +19,7 @@ ws = wb.active
 # переменная самой последней заполненной строки
 max_row = ws.max_row
 
-
+# сбор, очистка и обработка данных из колонок с вставленными данными
 for row in range(start_row, max_row+1):
     cell = ws.cell(row, data_col1)
     orig_content_cell = cell.value
@@ -50,9 +50,16 @@ tuple1 = enumerate(set1)
 for i1, data1 in tuple1:
     ws.cell(start_row+i1, data_col1+2).value = data1
 
-
 tuple2 = enumerate(set2)
 for i2, data2 in tuple2:
     ws.cell(start_row+i2, data_col2+2).value = data2
+
+
+
+
+
+
+
+
 
 wb.save(file_xls)
