@@ -1,4 +1,8 @@
 # сравнение номеров дел
+# ...
+# INSTALL
+# pip install openpyxl
+
 import openpyxl
 import openpyxl.styles
 
