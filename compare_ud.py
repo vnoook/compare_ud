@@ -24,30 +24,38 @@ ws = wb.active
 max_row = ws.max_row
 
 # сбор, очистка и обработка данных из колонок с вставленными данными
+# FF0000 красный - 000000 чёрный - 878787 серый
+# колонка1
 for row in range(start_row, max_row+1):
     cell = ws.cell(row, data_col1)
-    orig_content_cell = cell.value
-    if orig_content_cell:
-        content_cell = str(orig_content_cell.strip()).replace('.', '')
-        if content_cell.isdigit():
-            set1.add(content_cell)
+    content_cell = str(cell.value)
+    content_cell = content_cell.strip().replace(' ', '')
+    content_cell = content_cell.strip().replace('.', '')
+    if content_cell.isdecimal():
+        set1.add(content_cell)
+    else:
+        if len(content_cell) == 0:
+            cell.fill = openpyxl.styles.PatternFill(start_color='878787', end_color='878787', fill_type='solid')
+        elif cell.value == None:
+            cell.fill = openpyxl.styles.PatternFill(start_color='878787', end_color='878787', fill_type='solid')
         else:
             cell.fill = openpyxl.styles.PatternFill(start_color='FF0000', end_color='FF0000', fill_type='solid')
-    else:
-        cell.fill = openpyxl.styles.PatternFill(start_color='000000', end_color='FF0000', fill_type='solid')
 
+# колонка2
 for row in range(start_row, max_row+1):
     cell = ws.cell(row, data_col2)
-    orig_content_cell = cell.value
-    if orig_content_cell:
-        content_cell = str(orig_content_cell.strip()).replace('.', '')
-        if content_cell.isdigit():
-            set2.add(content_cell)
+    content_cell = str(cell.value)
+    content_cell = content_cell.strip().replace(' ', '')
+    content_cell = content_cell.strip().replace('.', '')
+    if content_cell.isdecimal():
+        set2.add(content_cell)
+    else:
+        if len(content_cell) == 0:
+            cell.fill = openpyxl.styles.PatternFill(start_color='878787', end_color='878787', fill_type='solid')
+        elif cell.value == None:
+            cell.fill = openpyxl.styles.PatternFill(start_color='878787', end_color='878787', fill_type='solid')
         else:
             cell.fill = openpyxl.styles.PatternFill(start_color='FF0000', end_color='FF0000', fill_type='solid')
-    else:
-        cell.fill = openpyxl.styles.PatternFill(start_color='000000', end_color='FF0000', fill_type='solid')
-
 
 # заполнение колонок в экселе
 # чистка первой колонки - без дублей и пустых ячеек
@@ -83,6 +91,5 @@ diff_set2 = set2.difference(set1)
 tuple6 = enumerate(diff_set2)
 for i6, data6 in tuple6:
     ws.cell(start_row+i6, 8).value = data6
-
 
 wb.save(file_xls)
