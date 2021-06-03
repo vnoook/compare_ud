@@ -36,7 +36,7 @@ for row in range(start_row, max_row+1):
     else:
         if len(content_cell) == 0:
             cell.fill = openpyxl.styles.PatternFill(start_color='878787', end_color='878787', fill_type='solid')
-        elif cell.value == None:
+        elif cell.value is None:
             cell.fill = openpyxl.styles.PatternFill(start_color='878787', end_color='878787', fill_type='solid')
         else:
             cell.fill = openpyxl.styles.PatternFill(start_color='FF0000', end_color='FF0000', fill_type='solid')
@@ -52,7 +52,7 @@ for row in range(start_row, max_row+1):
     else:
         if len(content_cell) == 0:
             cell.fill = openpyxl.styles.PatternFill(start_color='878787', end_color='878787', fill_type='solid')
-        elif cell.value == None:
+        elif cell.value is None:
             cell.fill = openpyxl.styles.PatternFill(start_color='878787', end_color='878787', fill_type='solid')
         else:
             cell.fill = openpyxl.styles.PatternFill(start_color='FF0000', end_color='FF0000', fill_type='solid')
