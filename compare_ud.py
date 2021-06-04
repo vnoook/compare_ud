@@ -62,7 +62,8 @@ for row in range(start_row, max_row+1):
 
 # заполнение колонок в экселе
 # чистка первой колонки - без дублей и пустых ячеек
-tuple1 = enumerate(set1)
+# tuple1 = enumerate(set1)
+tuple1 = sorted(enumerate(set1), key=lambda nud: nud[1])
 for i1, data1 in tuple1:
     ws.cell(start_row+i1, 3).value = data1
 
