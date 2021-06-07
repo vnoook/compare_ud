@@ -1,10 +1,9 @@
-# TODO
-# сортировать множества И сделать удаление сначала точек, потом проверить есть ли пробелы а после них символы
-
-# сравнение номеров дел
+# сравнение номеров дел в двух столбцах и заполенение столбцов данными связанных множеств
 # ...
 # INSTALL
 # pip install openpyxl
+# COMPILE
+# pyinstaller -F compare_ud.py
 
 import openpyxl
 import openpyxl.styles
@@ -32,8 +31,8 @@ max_row = ws.max_row
 for row in range(start_row, max_row+1):
     cell = ws.cell(row, data_col1)
     content_cell = str(cell.value)
-    content_cell = content_cell.strip().replace(' ', '')
     content_cell = content_cell.strip().replace('.', '')
+    content_cell = content_cell.strip().replace(' ', '')
     if content_cell.isdecimal():
         set1.add(content_cell)
     else:
@@ -48,8 +47,8 @@ for row in range(start_row, max_row+1):
 for row in range(start_row, max_row+1):
     cell = ws.cell(row, data_col2)
     content_cell = str(cell.value)
-    content_cell = content_cell.strip().replace(' ', '')
     content_cell = content_cell.strip().replace('.', '')
+    content_cell = content_cell.strip().replace(' ', '')
     if content_cell.isdecimal():
         set2.add(content_cell)
     else:
@@ -60,62 +59,46 @@ for row in range(start_row, max_row+1):
         else:
             cell.fill = openpyxl.styles.PatternFill(start_color='FF0000', end_color='FF0000', fill_type='solid')
 
-# TODO
 # заполнение колонок в экселе
-# чистка первой колонки - без дублей и пустых ячеек
-# tuple1 = enumerate(set1)
-print(*set1, sep='\n', end=' ')
-print()
-print('****************************')
-tuple1 = sorted(set1, key=lambda nud: nud[1])
-# tuple1 = sorted(enumerate(set1), key=lambda nud: nud[1])
-print()
-print(*tuple1, sep='\n', end=' ')
-print()
-print('****************************')
-for i1, data1 in tuple1:
-    print(tuple1.index(i1), tuple1.index(data1))
-    ws.cell(start_row+i1, 3).value = data1
+# чистка третьей колонки - без дублей и пустых ячеек
+list1 = list(set1)
+list1.sort()
+for list1_value in list1:
+    ws.cell(start_row + list1.index(list1_value), 3).value = list1_value
 
-exit()
-wb.save(file_xls)
-
-
-
-
-
-# чистка второй колонки - без дублей и пустых ячеек
-# tuple2 = enumerate(set2)
-tuple2 = sorted(enumerate(set2), key=lambda nud: nud[1])
-for i2, data2 in tuple2:
-    ws.cell(start_row+i2, 4).value = data2
+# чистка четвёртой колонки - без дублей и пустых ячеек
+list2 = list(set2)
+list2.sort()
+for list2_value in list2:
+    ws.cell(start_row + list2.index(list2_value), 4).value = list2_value
 
 # Объединение списков без дублей
 all_cols = set1.union(set2)
-# tuple3 = enumerate(all_cols)
-tuple3 = sorted(enumerate(all_cols), key=lambda nud: nud[1])
-for i3, data3 in tuple3:
-    ws.cell(start_row+i3, 5).value = data3
+list3 = list(all_cols)
+list3.sort()
+for list3_value in list3:
+    ws.cell(start_row + list3.index(list3_value), 5).value = list3_value
 
 # общие значения
 common_values = set1.intersection(set2)
-# tuple4 = enumerate(common_values)
-tuple4 = sorted(enumerate(common_values), key=lambda nud: nud[1])
-for i4, data4 in tuple4:
-    ws.cell(start_row+i4, 6).value = data4
+list4 = list(common_values)
+list4.sort()
+for list4_value in list4:
+    ws.cell(start_row + list4.index(list4_value), 6).value = list4_value
 
 # пересечение 1
 diff_set1 = set1.difference(set2)
-# tuple5 = enumerate(diff_set1)
-tuple5 = sorted(enumerate(diff_set1), key=lambda nud: nud[1])
-for i5, data5 in tuple5:
-    ws.cell(start_row+i5, 7).value = data5
+list5 = list(diff_set1)
+list5.sort()
+for list5_value in list5:
+    ws.cell(start_row + list5.index(list5_value), 7).value = list5_value
 
 # пересечение 2
 diff_set2 = set2.difference(set1)
-# tuple6 = enumerate(diff_set2)
-tuple6 = sorted(enumerate(diff_set2), key=lambda nud: nud[1])
-for i6, data6 in tuple6:
-    ws.cell(start_row+i6, 8).value = data6
+list6 = list(diff_set2)
+list6.sort()
+for list6_value in list6:
+    ws.cell(start_row + list6.index(list6_value), 8).value = list6_value
 
+# сохраняю исходный файл с заполненными ячейками
 wb.save(file_xls)
