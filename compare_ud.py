@@ -60,15 +60,29 @@ for row in range(start_row, max_row+1):
         else:
             cell.fill = openpyxl.styles.PatternFill(start_color='FF0000', end_color='FF0000', fill_type='solid')
 
+# TODO
 # заполнение колонок в экселе
 # чистка первой колонки - без дублей и пустых ячеек
 # tuple1 = enumerate(set1)
-print(*set1)
-tuple1 = sorted(enumerate(set1), key=lambda nud: nud[1])
+print(*set1, sep='\n', end=' ')
 print()
-print(tuple1)
+print('****************************')
+tuple1 = sorted(set1, key=lambda nud: nud[1])
+# tuple1 = sorted(enumerate(set1), key=lambda nud: nud[1])
+print()
+print(*tuple1, sep='\n', end=' ')
+print()
+print('****************************')
 for i1, data1 in tuple1:
+    print(tuple1.index(i1), tuple1.index(data1))
     ws.cell(start_row+i1, 3).value = data1
+
+exit()
+wb.save(file_xls)
+
+
+
+
 
 # чистка второй колонки - без дублей и пустых ячеек
 # tuple2 = enumerate(set2)
