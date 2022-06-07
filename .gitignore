@@ -1,8 +1,2 @@
-/.idea/.gitignore
-/.idea/compare_ud.iml
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/inspectionProfiles/profiles_settings.xml
-/.idea/inspectionProfiles/Project_Default.xml
-/.idea/vcs.xml
-~$compare_ud.xlsx
+/.idea/
+*.xlsx
